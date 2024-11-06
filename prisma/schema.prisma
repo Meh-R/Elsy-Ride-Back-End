@@ -1,0 +1,85 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String      @id @default(uuid())
+  email       String      @unique 
+  password    String
+  firstName   String
+  lastName    String
+  adresse     String
+  city        String
+  postaleCode Int
+  created_at  DateTime    @default(now())
+  updated_at  DateTime    @updatedAt
+  role        String 
+  isActive    Int
+  token       String
+
+  cart Cart?
+}
+
+model Category {
+  id            String      @id @default(uuid())
+  type          String      @unique
+  picsCategory  String 
+  created_at    DateTime    @default(now())
+  updated_at    DateTime    @updatedAt
+
+  product Product[]
+}
+
+model Cart {
+  id                String      @id @default(uuid())
+  userId            String      @unique
+  created_at        DateTime    @default(now())
+  updated_at        DateTime    @updatedAt
+
+  user              User        @relation(fields: [userId], references: [id])
+  cart_Has_Product  Cart_Has_Product[]
+  orders            Order[]     
+}
+
+model Cart_Has_Product {
+  id            String      @id @default(uuid())
+  cartId     String
+  productId  String
+  quantity   Int
+  isActive   Boolean @default(true)
+  cart Cart @relation(fields: [cartId], references: [id])
+  product Product @relation(fields: [productId], references: [id])
+}
+
+model Product {
+  id          String      @id @default(uuid())
+  name        String
+  picsProduct String
+  description String      @db.VarChar(512)
+  created_at  DateTime    @default(now())
+  updated_at  DateTime    @updatedAt
+  price       Float 
+  stock       Int
+  categoryId  String
+  category Category @relation(fields: [categoryId], references: [id])
+  cart_Has_Product Cart_Has_Product[]
+}
+
+model Order {
+  id           String      @id @default(uuid())
+  cartId       String
+  cartHasProductId String
+  total        Int
+  purchaseDate DateTime    @default(now())
+  status       String      @db.VarChar(55)
+
+  cart Cart @relation(fields: [cartId], references: [id]) 
+}
+
+
+
