@@ -1,7 +1,7 @@
 import { ForbiddenException, Injectable } from '@nestjs/common';
 import { Category, User } from '@prisma/client';
 import { dot } from 'node:test/reporters';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { PrismaService } from '../prisma/prisma.service';
 import { createCategoryDto } from './dto/create.category.dto';
 import { updateCategoryDto } from './dto';
 

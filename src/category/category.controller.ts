@@ -9,12 +9,12 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { CategoryService } from './category.service';
-import { JwtGuard } from 'src/auth/Guards';
-import { GetUser } from 'src/auth/decorator';
+import { JwtGuard } from '../auth/Guards';
+import { GetUser } from '../auth/decorator';
 import { User } from '@prisma/client';
 import { createCategoryDto } from './dto/create.category.dto';
 import { updateCategoryDto } from './dto';
-import { AdminGuard } from 'src/auth/Guards/auth.guard';
+import { AdminGuard } from '../auth/Guards/auth.guard';
 
 @UseGuards(JwtGuard)
 @Controller('category')
