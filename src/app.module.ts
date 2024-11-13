@@ -12,6 +12,7 @@ import { CartModule } from './cart/cart.module';
 import { ImageModule } from './image/image.module';
 import { OrderModule } from './order/order.module';
 import { PaymentModule } from './stripe/stripe.module';
+import { CartHasProductModule } from './cart-has-product/cart-has-product.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { PaymentModule } from './stripe/stripe.module';
     ImageModule,
     OrderModule,
     PaymentModule,
+    CartHasProductModule,
   ],
   controllers: [AppController],
   providers: [AppService],
