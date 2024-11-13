@@ -23,9 +23,9 @@ export class UserController {
     return this.userService.getUser(user);
   }
 
-  @Get('/all/:page')
-  getAllUser(@GetUser() user: User, @Param('page') page: number) {
-    return this.userService.getAllUser(user, page);
+  @Get('/all')
+  getAllUser(@GetUser() user: User) {
+    return this.userService.getAllUser(user);
   }
 
   @Get('/find/:query')

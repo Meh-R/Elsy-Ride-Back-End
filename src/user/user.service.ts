@@ -31,7 +31,7 @@ export class UserService {
     return userWithDetails;
   }
 
-  async getAllUser(user: User, page: number) {
+  async getAllUser(user: User) {
     const userVerif = await this.prisma.user.findUnique({
       where: {
         id: user.id,
@@ -45,8 +45,7 @@ export class UserService {
       orderBy: {
         created_at: 'desc',
       },
-      skip: page * 4,
-      take: 4,
+
       select: {
         id: true,
         email: true,
