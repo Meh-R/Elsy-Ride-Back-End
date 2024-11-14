@@ -11,7 +11,7 @@ export class AuthController {
   }
 
   @Get('/validAccount/:token')
-  @Redirect('http://localhost:3000/login')
+  @Redirect(`${process.env.SERVER_URL}login`)
   validAccount(@Param('token') token: string) {
     return this.authService.validAccount(token);
   }
