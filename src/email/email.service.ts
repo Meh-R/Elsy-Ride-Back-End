@@ -19,7 +19,7 @@ export class EmailService {
   }
 
   async sendUserConfirmation(user: User) {
-    const url = `http://localhost:3001/auth/validAccount/${user.token}`;
+    const url = `${process.env.SERVER_URL}auth/validAccount/${user.token}`;
     const emailHtml = `<p>Hey ${user.firstName},</p>
         <p>Your requested an account creation on Baby ride</p>
             <a href='${url}'>You requested an account creation on Baby ride, click here 
